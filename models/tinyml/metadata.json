@@ -1,0 +1,15 @@
+{
+  "feature_columns": [
+    "Temperature",
+    "Humidity",
+    "Soil_Moisture",
+    "Rainfall"
+  ],
+  "crop_feature_columns": [
+    "Temperature",
+    "Humidity",
+    "Soil_Moisture",
+    "Rainfall",
+    "pred_pH"
+  ]
+}

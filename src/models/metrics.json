@@ -1,0 +1,46 @@
+{
+  "ph_mae": 0.4867094006925248,
+  "ph_r2": 0.001933441903962052,
+  "crop_accuracy": 0.1,
+  "ph_cv_score": -0.1105453347068965,
+  "crop_cv_score": 0.09387374796179827,
+  "ph_best_params": {
+    "model__max_depth": 4,
+    "model__max_features": "sqrt",
+    "model__min_samples_leaf": 4,
+    "model__n_estimators": 200,
+    "select__k": 5
+  },
+  "crop_best_params": {
+    "model__class_weight": "balanced",
+    "model__max_depth": 8,
+    "model__max_features": 1.0,
+    "model__min_samples_leaf": 4,
+    "model__n_estimators": 200,
+    "select__k": 7
+  },
+  "n_train": 160,
+  "n_test": 40,
+  "crop_labels": [
+    "Banana",
+    "Black Gram",
+    "Cabbage",
+    "Carrot",
+    "Chili",
+    "Cinnamon",
+    "Coconut",
+    "Coffee",
+    "Green Gram",
+    "Maize",
+    "Mango",
+    "Onion",
+    "Papaya",
+    "Pepper",
+    "Potato",
+    "Rice",
+    "Rubber",
+    "Sugarcane",
+    "Tea",
+    "Tomato"
+  ]
+}

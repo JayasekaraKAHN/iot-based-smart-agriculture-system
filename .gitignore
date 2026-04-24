@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+
+# Python virtual environments
+.venv/
+venv/
+
+# Python caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Node dependencies
+node_modules/
+agri-dashboard/client/node_modules/
+agri-dashboard/server/node_modules/
+
+# ML artifacts (large binaries)
+*.joblib
+*.pkl
+*.h5
+
+# Training output folders
+catboost_info/
+
+# Logs and temp
+*.log
+tmp/

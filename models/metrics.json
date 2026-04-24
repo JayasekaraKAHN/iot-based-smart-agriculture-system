@@ -1,0 +1,29 @@
+{
+  "ph_mae": 0.642212525987526,
+  "ph_r2": -0.752517677118083,
+  "crop_accuracy": 0.0,
+  "n_train": 160,
+  "n_test": 40,
+  "crop_labels": [
+    "Banana",
+    "Black Gram",
+    "Cabbage",
+    "Carrot",
+    "Chili",
+    "Cinnamon",
+    "Coconut",
+    "Coffee",
+    "Green Gram",
+    "Maize",
+    "Mango",
+    "Onion",
+    "Papaya",
+    "Pepper",
+    "Potato",
+    "Rice",
+    "Rubber",
+    "Sugarcane",
+    "Tea",
+    "Tomato"
+  ]
+}

@@ -28,7 +28,7 @@ const char* ssid = "Hiruni";
 const char* password = "Hiruni2022";
 
 // ================= MQTT =================
-const char* mqtt_server = "192.168.1.3";
+const char* mqtt_server = "192.168.1.2";
 const int mqtt_port = 1883;
 const char* mqtt_topic = "agricultural/esp32/data";
 
@@ -209,29 +209,43 @@ void connectMQTT() {
   }
 }
 
-// ================= LCD (UPDATED) =================
 void updateLCD(float t, float h, float s, float rainMM, float ph, const char* crop, const char* zone) {
   lcd.clear();
 
+  // ===== Row 1 ===== (Temperature & Humidity)
   lcd.setCursor(0, 0);
-  lcd.print("T:"); lcd.print(t,1);
-  lcd.print(" H:"); lcd.print(h,0);
+  lcd.print("T:");
+  lcd.print(t,1);       // e.g. 30.7
+  lcd.print("C ");
 
+  lcd.print("H:");
+  lcd.print(h,0);       // e.g. 78
+  lcd.print("%");
+
+  // ===== Row 2 ===== (Soil & Rain)
   lcd.setCursor(0, 1);
-  lcd.print("Soil:"); lcd.print(s,1);
-  lcd.print("% Rain:");
-  lcd.print(rainMM,1);
-  lcd.print("mm/h");   // 🔥 FINAL OUTPUT
+  lcd.print("Soil:");
+  lcd.print(s,0);       // shorter (no decimal)
+  lcd.print("% ");
 
+  lcd.print("R:");
+  lcd.print(rainMM,1);  // e.g. 2.5
+  lcd.print("mm");
+
+  // ===== Row 3 ===== (pH & Zone)
   lcd.setCursor(0, 2);
-  lcd.print("pH:"); lcd.print(ph,2);
+  lcd.print("pH:");
+  lcd.print(ph,1);
 
+  lcd.print(" Z:");
+  lcd.print(zone);      // keep short label!
+
+  // ===== Row 4 ===== (Crop)
   lcd.setCursor(0, 3);
   lcd.print("Crop:");
   lcd.print(crop);
-  lcd.print(" Z:");
-  lcd.print(zone);
 }
+
 
 // ================= SETUP =================
 void setup() {
@@ -276,25 +290,27 @@ void loop() {
   float rain = getRainPercent();
 
   rainMMperHour = estimateRainMM(rain);
+  float rainInput = rainMMperHour;
 
   // ================= ML =================
   float features[11] = {
-    temperature, humidity, soil, rain,
+    temperature, humidity, soil, rainInput,
     temperature * humidity,
-    rain * soil,
+    rainInput * soil,
     temperature / (humidity + 1),
     temperature * temperature,
     safeLog(humidity),
-    soil - 0.3 * rain,
+    soil - 0.3 * rainInput,
     0
   };
 
   float ph = phModel.predict(features);
 
-  const char* crop = "N/A";
-  if (temperature > 10 && humidity > 50) {
-    float cf[5] = {temperature, humidity, soil, rain, ph};
-    crop = kCropLabels[cropModel.predict(cf)];
+  float cf[5] = {temperature, humidity, soil, rainInput, ph};
+  int cropIdx = cropModel.predict(cf);
+  const char* crop = "Unknown";
+  if (cropIdx >= 0 && cropIdx < kCropLabelCount) {
+    crop = kCropLabels[cropIdx];
   }
 
   const char* zone = "Unknown";

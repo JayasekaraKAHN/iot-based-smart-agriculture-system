@@ -11,5 +11,6 @@
     "Soil_Moisture",
     "Rainfall",
     "pred_pH"
-  ]
+  ],
+  "rainfall_unit": "mm_per_hour"
 }

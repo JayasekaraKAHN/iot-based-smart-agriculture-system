@@ -642,7 +642,7 @@ export default function App() {
     },
     {
       key: "anomaly",
-      eyebrow: "Unusual activity",
+      eyebrow: "Unusual",
       title: "Unexpected reading check",
       value: anomalies.items?.length ? `${anomalies.items.length} unusual flags` : "No unusual behaviour",
       subtitle: `Health score ${anomalies.healthScore || 100}/100`,

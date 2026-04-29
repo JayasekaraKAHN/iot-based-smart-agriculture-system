@@ -212,7 +212,7 @@ void connectMQTT() {
 void updateLCD(float t, float h, float s, float rainMM, float ph, const char* crop, const char* zone) {
   lcd.clear();
 
-  // ===== Row 1 ===== (Temperature & Humidity)
+  // ===== Row 1 == (Temperature & Humidity)
   lcd.setCursor(0, 0);
   lcd.print("T:");
   lcd.print(t,1);       // e.g. 30.7

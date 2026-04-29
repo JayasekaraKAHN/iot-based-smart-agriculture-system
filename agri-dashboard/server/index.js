@@ -229,7 +229,7 @@ function kmeans(points, requestedK = 3, iterations = 12) {
 function describePattern(center, globalMeans) {
   const [t, h, s, r] = center;
   const tags = [];
-  tags.push(t >= globalMeans[0] ? "Warmer" : "Cooler");
+  tags.push(t >= globalMeans[0] ? "Warm" : "Cooler");
   tags.push(h >= globalMeans[1] ? "Humid-air" : "Dry-air");
   tags.push(s >= globalMeans[2] ? "Moist-soil" : "Dry-soil");
   tags.push(r >= globalMeans[3] ? "Rain-active" : "Low-rain");
